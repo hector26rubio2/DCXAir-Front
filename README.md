@@ -1,27 +1,40 @@
 # DCXAirFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.1.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 17.3.1.
 
-## Development server
+## Descripción
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+DCXAirFront es una aplicación de una sola página (SPA) desarrollada en Angular 17 que permite a los usuarios buscar vuelos y cargar información de vuelos.
 
-## Code scaffolding
+## Instalación
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clona este repositorio en tu máquina local.
+2. Abre una terminal en la carpeta raíz del proyecto.
+3. Ejecuta `npm install` para instalar las dependencias del proyecto.
+4. Ejecuta `ng serve` para iniciar el servidor de desarrollo. La aplicación estará disponible en `http://localhost:4200/`.
 
-## Build
+## Enrutamiento
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+La aplicación utiliza Angular Router para gestionar la navegación entre las diferentes vistas. A continuación se describe la configuración de las rutas principales:
 
-## Running unit tests
+- `/dashboard`: Vista principal que contiene dos subvistas.
+  - `/search-flight`: Permite a los usuarios buscar vuelos.
+  - `/load-flight`: Permite a los usuarios cargar información de vuelos.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Además, cualquier otra ruta será redirigida automáticamente a `/dashboard/search-flight`.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Contribuir
 
-## Further help
+Si deseas contribuir a este proyecto, sigue estos pasos:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Haz un fork de este repositorio.
+2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commits (`git commit -am 'Agrega nueva funcionalidad'`).
+4. Sube tus cambios a tu repositorio fork (`git push origin feature/nueva-funcionalidad`).
+5. Crea un pull request hacia la rama `main` de este repositorio.
+
+## Soporte
+
+Si necesitas ayuda o tienes alguna pregunta, no dudes en abrir un issue en este repositorio.
+
