@@ -6,7 +6,7 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <div>
-          <ng-select formControlName="Origin" class="w-full border rounded-md p-2 mb-4" [items]="originOptions"
+          <ng-select formControlName="Origin" class="w-full border rounded-md p-2 mb-4 custom" [items]="originOptions"
             bindLabel="label" bindValue="value">
           </ng-select>
 
@@ -23,7 +23,7 @@
 
         <div>
 
-          <ng-select formControlName="Destination" class="w-full border rounded-md p-2 mb-4 "
+          <ng-select formControlName="Destination" class="w-full border rounded-md p-2 mb-4 custom"
             [items]="destinationOptions" bindLabel="label" bindValue="value">
           </ng-select>
           <div *ngIf="isFieldInvalid('Destination')" class="text-danger">
