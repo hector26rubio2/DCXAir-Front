@@ -1,0 +1,103 @@
+<div class="flex justify-between">
+  <section class="flex justify-start items-center px-10 pt-20 w-3/12">
+    <div class="max-w-xl p-6 bg-white shadow-md rounded-lg">
+      <h1 class="text-xl mb-4">Search Flight</h1>
+      <hr class="my-2">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div>
+          <ng-select formControlName="Origin" class="w-full border rounded-md p-2 mb-4" [items]="originOptions"
+            bindLabel="label" bindValue="value">
+          </ng-select>
+
+          <div *ngIf="isFieldInvalid('Origin')" class="text-danger">
+            <div *ngIf="getFieldErrors('Origin')?.['required']">Origin is required.</div>
+            <div *ngIf="getFieldErrors('Origin')?.['maxLength']">Origin must be at most 3 characters long.</div>
+            <div *ngIf="getFieldErrors('Origin')?.['pattern']">Origin must be uppercase and consist of exactly 3
+              letters.
+            </div>
+
+          </div>
+        </div>
+
+
+        <div>
+
+          <ng-select formControlName="Destination" class="w-full border rounded-md p-2 mb-4 "
+            [items]="destinationOptions" bindLabel="label" bindValue="value">
+          </ng-select>
+          <div *ngIf="isFieldInvalid('Destination')" class="text-danger">
+            <div *ngIf="getFieldErrors('Destination')?.['required']">Destination is required.</div>
+            <div *ngIf="getFieldErrors('Destination')?.['maxLength']">Destination must be at most 3 characters long.
+            </div>
+            <div *ngIf="getFieldErrors('Destination')?.['pattern']">Destination must be uppercase and consist of exactly
+              3
+              letters.</div>
+          </div>
+        </div>
+
+        <div class="flex space-x-4 mb-6">
+          <div *ngFor="let flight of flightTypeOptions; let i = index" class="flex items-center">
+            <input type="radio" formControlName="FlightType" [value]="flight.value" [id]="'flightType' + i">
+            <label [for]="'flightType' + i" class="ml-2">{{ flight.label }}</label>
+          </div>
+        </div>
+        <div *ngIf="isFieldInvalid('FlightType')" class="text-danger ">
+          <div *ngIf="getFieldErrors('FlightType')?.['required']">FlightType is required.</div>
+        </div>
+
+        <!-- Selección de tipo de moneda -->
+        <div>
+          <label for="CurrencyType">Currency Type:</label>
+          <select id="CurrencyType" formControlName="CurrencyType" class="w-full border rounded-md p-2 mb-4 mt-2">
+            <option *ngFor="let currency of currencyTypeOptions" [value]="currency.value">{{ currency.label }}</option>
+          </select>
+        </div>
+        <div *ngIf="isFieldInvalid('CurrencyType')" class="text-danger">
+          <div *ngIf="getFieldErrors('CurrencyType')?.['required']">CurrencyType is required.</div>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="flex justify-end items-center px-10 pt-20 overflow-auto w-7/12">
+    <!-- Aplicamos la clase 'overflow-auto' para permitir el desplazamiento -->
+    <div *ngFor="let journey of journeys" class="container max-w-xl p-6 bg-blue-200 rounded-xl shadow-2xl m-4">
+      <div class="container">
+        <div class="row mt-2 justify-content-center">
+          <div class="col-md-12">
+            <div class="journey-card bg-secondary text-black">
+              <h3 class="text-center">
+                <span class="journey-info">
+                  {{ journey.Origin }}
+                </span>
+                <span class="journey-info">
+                  <i class="fas fa-arrow-right"></i> {{ journey.Destination }}
+                </span>
+                <span class="journey-info">Price: {{journey.Price }}</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-3" *ngFor="let flight of journey.Flights">
+                <div class="flight-card bg-light d-flex flex-column align-items-center">
+                  <p>{{ flight.Origin }} <i class="fas fa-arrow-right"></i> {{ flight.Destination }}</p>
+                  <p>Flight Carrier: {{ flight.Transport?.FlightCarrier }}</p>
+                  <p>Flight Number: {{ flight.Transport?.FlightNumber }}</p>
+                  <p><b>Price:{{ flight.Price }}</b></p>
+                  <div class="mt-auto">
+                    <i class="fas fa-plane"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
